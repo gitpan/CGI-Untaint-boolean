@@ -1,0 +1,19 @@
+--- #YAML:1.0
+name: CGI-Untaint-boolean
+version: 0.10
+author:
+  - chromatic, E<lt>chromatic@wgz.orgE<gt>
+  - Thanks to Tony Bowden for helpful suggestions.
+abstract: untaint boolean values from CGI programs
+license: perl
+requires:
+  CGI::Untaint: 1.00
+build_requires:
+  Scalar::Util: ''
+  Test::CGI::Untaint: 1.10
+  Test::Simple: 0.47
+provides:
+  CGI::Untaint::boolean:
+    file: lib/CGI/Untaint/boolean.pm
+    version: 0.10
+generated_by: Module::Build version 0.25

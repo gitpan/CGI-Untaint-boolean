@@ -1,0 +1,36 @@
+CGI::Untaint::boolean
+--------------------------
+
+Version 0.10, Sat Jun 26 22:16:46 UTC 2004
+
+Untaint boolean values from CGI forms.
+
+This CGI::Untaint input handler verifies that it is dealing with a reasonable
+boolean value, probably from a checkbox with no value specified. In this case,
+"reasonable" means that the value is on, if the checkbox is checked, or empty,
+if the client did not send a value.
+
+Prerequisites
+-------------
+
+To run this module, you'll need CGI::Untaint 1.00 or newer.
+
+To test this module, you'll need Scalar::Util, Test::Simple 0.47 or newer, and
+Test::CGI::Untaint 1.10 or newer.
+
+Installation
+------------
+
+	$ perl Build.PL
+	$ ./Build
+	$ ./Build test
+	$ sudo ./Build install
+
+
+COPYRIGHT
+---------
+
+Copyright (c) 2004, chromatic (chromatic at wgz dot org).  All rights reserved.
+
+This module is free software; you can use, redistribute, and modify it under
+the same terms as Perl itself.
