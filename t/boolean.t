@@ -7,11 +7,9 @@ BEGIN
 }
 
 use strict;
+use Scalar::Util 'tainted';
 
 use Test::More tests => 13;
-
-use Scalar::Util 'tainted';
-use Test::CGI::Untaint;
 
 my $module = 'CGI::Untaint::boolean';
 my $parent = 'CGI::Untaint::object' ;
@@ -24,10 +22,18 @@ can_ok( $module, '_new' );
 my $bool = $module->_new( {} );
 isa_ok( $bool, $module );
 
-is_extractable( 'on',   1, 'boolean' );
-is_extractable(   '',  '', 'boolean' );
+SKIP:
+{
+	my $tcu = 'Test::CGI::Untaint';
 
-unextractable( 'wibbly',  'boolean' );
+	skip( "Test::CGI::Untaint missing, skipping tests" ,3 )
+		unless eval { require Test::CGI::Untaint; $tcu->import(); 1 };
+
+	is_extractable( 'on',   1, 'boolean' );
+	is_extractable(   '',  '', 'boolean' );
+
+	unextractable( 'wibbly',  'boolean' );
+}
 
 my $tainted_on = substr( 'on' .  $ENV{PATH}, 0, 2 );
 my $on         = $bool->_untaint_re( $tainted_on );

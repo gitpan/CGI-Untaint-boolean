@@ -1,3 +1,7 @@
+Version 0.12, Wed Jul  7 04:39:49 UTC 2004
+	- added Makefile.PL for ExtUtils::MakeMaker compatibility
+	- skip some tests without Test::CGI::Untaint installed
+
 Version 0.11, Sat Jun 26 22:25:55 UTC 2004 
 	- added explanation of the value in the documentation (thanks, Tony!)
 
