@@ -3,7 +3,7 @@ package CGI::Untaint::boolean;
 use strict;
 use vars '$VERSION';
 
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 use base 'CGI::Untaint::object';
 
@@ -40,6 +40,9 @@ This input handler verifies that it is dealing with a reasonable boolean value,
 probably from a checkbox with no value specified.  In this case, "reasonable"
 means that the value is C<on>, if the checkbox is checked, or empty, if the
 client did not send a value.
+
+B<Note:> the C<value()> method will return either 1 or 0, not C<on> or the
+empty string.  It's boolean for a reason!
 
 =head1 SEE ALSO
 

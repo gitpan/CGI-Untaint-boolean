@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name: CGI-Untaint-boolean
-version: 0.10
+version: 0.11
 author:
   - chromatic, E<lt>chromatic@wgz.orgE<gt>
   - Thanks to Tony Bowden for helpful suggestions.
@@ -15,5 +15,5 @@ build_requires:
 provides:
   CGI::Untaint::boolean:
     file: lib/CGI/Untaint/boolean.pm
-    version: 0.10
+    version: 0.11
 generated_by: Module::Build version 0.25

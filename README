@@ -1,7 +1,7 @@
 CGI::Untaint::boolean
---------------------------
+---------------------
 
-Version 0.10, Sat Jun 26 22:16:46 UTC 2004
+Version 0.11, Sat Jun 26 22:25:55 UTC 2004
 
 Untaint boolean values from CGI forms.
 
