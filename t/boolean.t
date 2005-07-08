@@ -11,6 +11,8 @@ use Scalar::Util 'tainted';
 
 use Test::More tests => 13;
 
+use CGI::Untaint;
+
 my $module = 'CGI::Untaint::boolean';
 my $parent = 'CGI::Untaint::object' ;
 
@@ -30,7 +32,7 @@ SKIP:
 		unless eval { require Test::CGI::Untaint; $tcu->import(); 1 };
 
 	is_extractable( 'on',   1, 'boolean' );
-	is_extractable(   '',  '', 'boolean' );
+	is_extractable(   '',   0, 'boolean' );
 
 	unextractable( 'wibbly',  'boolean' );
 }
@@ -45,7 +47,9 @@ my $off         = $bool->_untaint_re( $tainted_off );
 ok( ! tainted( $off ), '... for both allowed checkbox values' );
 
 can_ok( $bool, 'is_valid' );
-$bool->value( 'on'  );
-ok(   $bool->is_valid(), "is_valid() should return true if value is 'on'" );
-$bool->value( 'foo' );
-ok( ! $bool->is_valid(), '... or false otherwise' );
+my $untaint = CGI::Untaint->new( { foo => 'on', bar => 'foo' } );
+my $foo     = $untaint->extract( -as_boolean => 'foo' );
+my $bar     = $untaint->extract( -as_boolean => 'bar' );
+
+ok(   $foo, 'value should be true if checkbox is on' );
+ok( ! $bar, '... false otherwise' );

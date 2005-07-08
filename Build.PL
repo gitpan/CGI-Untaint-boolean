@@ -14,6 +14,8 @@ my $build = Module::Build->new(
 		'Test::CGI::Untaint' => '1.10',
 	},
 	dist_version_from => 'lib/CGI/Untaint/boolean.pm',
+	create_makefile_pl => 'traditional',
+	sign              => 1,
 );
 
 $build->create_build_script();

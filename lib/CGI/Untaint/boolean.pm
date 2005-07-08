@@ -3,20 +3,22 @@ package CGI::Untaint::boolean;
 use strict;
 use vars '$VERSION';
 
-$VERSION = '0.12';
+$VERSION = '1.00';
 
 use base 'CGI::Untaint::object';
 
-sub _untaint_re { qr/^(on)$/ }
+sub _untaint_re { qr/^(on|)$/ }
 
 sub is_valid
 {
-	my $self  = shift;
-	my $value = $self->value();
+	my $self         = shift;
+	my $value        = $self->value();
+	my ($untainted)  = $value =~ $self->_untaint_re();
+	$untainted     ||= '';
 
-	return unless $value and $value =~ $self->_untaint_re();
+	$self->value( $untainted eq 'on' ? 1 : 0 );
 
-	$self->value( $value eq 'on' ? 1 : 0 );
+	return unless $untainted eq 'on' || $untainted eq '';
 	return 1;
 }
 
@@ -41,8 +43,16 @@ probably from a checkbox with no value specified.  In this case, "reasonable"
 means that the value is C<on>, if the checkbox is checked, or empty, if the
 client did not send a value.
 
-B<Note:> the C<value()> method will return either 1 or 0, not C<on> or the
-empty string.  It's boolean for a reason!
+B<Note:> the C<value()> method will return either true or false, not C<on> or
+the empty string.  It's boolean for a reason!  (Don't count on it returning
+C<0> for false; just false.)
+
+=head1 METHOD
+
+=head2 C<is_valid()>
+
+Returns true if the value for this checkbox is valid, setting the value to true
+if the value is C<on>, false otherwise.
 
 =head1 SEE ALSO
 
@@ -50,9 +60,10 @@ L<CGI::Untaint>, L<CGI::Untaint::object>
 
 =head1 AUTHOR
 
-chromatic, E<lt>chromatic@wgz.orgE<gt>
+chromatic, C<< chromatic at wgz dot org >>
 
-Thanks to Tony Bowden for helpful suggestions.
+Thanks to Tony Bowden for helpful suggestions and Simon Wilcox for reporting a
+false value bug, with a test patch.
 
 =head1 BUGS
 
@@ -60,6 +71,6 @@ No known bugs.  Please report any to L<http://rt.cpan.org/>.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2004, chromatic.  All rights reserved.  This module is
-distributed under the same terms as Perl itself, in the hope that it is useful
-but certainly under no guarantee.
+Copyright (c) 2004 - 2005, chromatic.  All rights reserved.  This module is
+distributed under the same terms as Perl 5.8.x itself, in the hope that it is
+useful but certainly under no guarantee.

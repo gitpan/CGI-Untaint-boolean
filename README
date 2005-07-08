@@ -1,7 +1,7 @@
 CGI::Untaint::boolean
 ---------------------
 
-Version 0.11, Sat Jun 26 22:25:55 UTC 2004
+Version 1.00, Fri Jul  8 06:58:28 UTC 2005
 
 Untaint boolean values from CGI forms.
 
@@ -13,9 +13,9 @@ if the client did not send a value.
 Prerequisites
 -------------
 
-To run this module, you'll need CGI::Untaint 1.00 or newer.
+To run this module, you need CGI::Untaint 1.00 or newer.
 
-To test this module, you'll need Scalar::Util, Test::Simple 0.47 or newer, and
+To test this module, you need Scalar::Util, Test::Simple 0.47 or newer, and
 Test::CGI::Untaint 1.10 or newer.
 
 Installation
@@ -26,11 +26,14 @@ Installation
 	$ ./Build test
 	$ sudo ./Build install
 
+If you're old-school, you can also use Makefile.PL, but it doesn't distinguish
+between build-and runtime requirements, so consider carefully your options.
 
 COPYRIGHT
 ---------
 
-Copyright (c) 2004, chromatic (chromatic at wgz dot org).  All rights reserved.
+Copyright (c) 2004 - 2005, chromatic (chromatic at wgz dot org).  All rights
+reserved.
 
 This module is free software; you can use, redistribute, and modify it under
 the same terms as Perl itself.
