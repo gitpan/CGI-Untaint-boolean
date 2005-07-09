@@ -3,7 +3,7 @@ package CGI::Untaint::boolean;
 use strict;
 use vars '$VERSION';
 
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 use base 'CGI::Untaint::object';
 
@@ -43,9 +43,9 @@ probably from a checkbox with no value specified.  In this case, "reasonable"
 means that the value is C<on>, if the checkbox is checked, or empty, if the
 client did not send a value.
 
-B<Note:> the C<value()> method will return either true or false, not C<on> or
-the empty string.  It's boolean for a reason!  (Don't count on it returning
-C<0> for false; just false.)
+B<Note:> the C<value()> method will return either true or false.  It will
+I<not> return the string "on" or the empty string.  It's boolean for a reason!
+(Don't count on it returning C<0> for false either; false is just false.)
 
 =head1 METHOD
 
@@ -62,8 +62,9 @@ L<CGI::Untaint>, L<CGI::Untaint::object>
 
 chromatic, C<< chromatic at wgz dot org >>
 
-Thanks to Tony Bowden for helpful suggestions and Simon Wilcox for reporting a
-false value bug, with a test patch.
+Thanks to Tony Bowden for helpful suggestions, Simon Wilcox for reporting a
+false value bug, with a test patch, and Dave Wilcox for helping to disambiguate
+the documentation.
 
 =head1 BUGS
 
@@ -71,6 +72,6 @@ No known bugs.  Please report any to L<http://rt.cpan.org/>.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2004 - 2005, chromatic.  All rights reserved.  This module is
-distributed under the same terms as Perl 5.8.x itself, in the hope that it is
-useful but certainly under no guarantee.
+Copyright (c) 2004 - 2005, chromatic.  All rights reserved.  You may use,
+modify, and distribute this module under the same terms as Perl 5.8.x itself,
+in the hope that it is useful but certainly under no guarantee.

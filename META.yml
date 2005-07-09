@@ -1,6 +1,6 @@
 ---
 name: CGI-Untaint-boolean
-version: 1.00
+version: 1.01
 author: ~
 abstract: untaint boolean values from CGI programs
 license: perl
@@ -13,5 +13,5 @@ build_requires:
 provides:
   CGI::Untaint::boolean:
     file: lib/CGI/Untaint/boolean.pm
-    version: 1.00
+    version: 1.01
 generated_by: Module::Build version 0.2611
